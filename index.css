@@ -606,3 +606,59 @@ button:focus-visible, a:focus-visible {
     outline: 2px solid var(--color-blue-accent);
     outline-offset: 4px;
 }
+
+/* Correções de Responsividade para Dispositivos Móveis e Telas Pequenas */
+@media (max-width: 580px) {
+    body {
+        padding: 1.5rem 1rem; /* Reduz espaçamento externo em celulares */
+    }
+    
+    .container {
+        gap: 2.2rem; /* Reduz distanciamento vertical entre seções */
+    }
+
+    .channel-title {
+        font-size: 2.3rem; /* Título principal redimensionado para caber sem quebras em celulares */
+        letter-spacing: 0.5px;
+    }
+    
+    .channel-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.85rem; /* Títulos de seções proporcionais em telas menores */
+        margin-bottom: 1.25rem;
+    }
+
+    .faq-trigger {
+        padding: 1.1rem 1.25rem; /* Padding reduzido nos triggers de FAQ */
+        font-size: 1.05rem;
+    }
+
+    .faq-content p {
+        padding: 0 1.25rem 1.1rem 1.25rem; /* Padding reduzido no conteúdo expandido */
+        font-size: 0.98rem;
+    }
+    
+    .personal-quote {
+        font-size: 1.1rem;
+        margin: 1.5rem 0;
+        padding-left: 1.25rem;
+    }
+    
+    .tab-btn {
+        padding: 10px;
+        font-size: 0.95rem; /* Botões de alternância mais compactos em celulares */
+    }
+
+    a.value-btn {
+        padding: 1.25rem 0.5rem; /* Ajuste sutil na altura dos botões de valores */
+        font-size: 1.2rem;
+    }
+    
+    .footer {
+        padding: 3rem 1.5rem 2rem 1.5rem;
+    }
+}
