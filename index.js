@@ -11,7 +11,7 @@ const UNLOCK_TIME_SECONDS = 170; // 2 minutos e 50 segundos
 // Inicialização do Player do YouTube (Função global requerida pela API)
 window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('youtube-player', {
-        videoId: 'y-320qq746o',
+        videoId: '7nCCSKLiISM',
         playerVars: {
             'controls': 0,
             'modestbranding': 1,
