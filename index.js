@@ -31,7 +31,6 @@ window.onYouTubeIframeAPIReady = function() {
 function onPlayerReady(event) {
     const playBtnControl = document.getElementById('btn-play-control');
     const playBtnOverlay = document.getElementById('btn-play-overlay');
-    const playBtnThumbnail = document.getElementById('btn-play-thumbnail');
     const videoBlocker = document.getElementById('video-blocker');
     const iconPlay = document.getElementById('icon-play');
     const iconPause = document.getElementById('icon-pause');
@@ -60,12 +59,6 @@ function onPlayerReady(event) {
             player.playVideo();
         });
     }
-
-    if (playBtnThumbnail) {
-        playBtnThumbnail.addEventListener('click', () => {
-            player.playVideo();
-        });
-    }
 }
 
 function onPlayerStateChange(event) {
@@ -80,14 +73,12 @@ function onPlayerStateChange(event) {
             player.setPlaybackQuality('highres');
         }
 
+        // Ativa o bloqueador de cliques para impedir sair da página durante a reprodução
+        const blocker = document.getElementById('video-blocker');
+        if (blocker) blocker.classList.add('active');
+
         // Oculta a mensagem de pausa
         if (pauseMsg) pauseMsg.classList.remove('show');
-        
-        // Oculta a thumbnail customizada ao começar a reproduzir
-        const thumbnail = document.getElementById('video-thumbnail');
-        if (thumbnail) {
-            thumbnail.classList.add('hide');
-        }
         
         // Altera o ícone para "pause" nos controles customizados
         if (iconPlay) iconPlay.style.display = 'none';
@@ -119,6 +110,10 @@ function onPlayerStateChange(event) {
         if (iconPlay) iconPlay.style.display = 'block';
         if (iconPause) iconPause.style.display = 'none';
         clearInterval(progressInterval);
+        
+        // Desativa o bloqueador para que o botão nativo de replay do YouTube seja clicável
+        const blocker = document.getElementById('video-blocker');
+        if (blocker) blocker.classList.remove('active');
     }
 }
 

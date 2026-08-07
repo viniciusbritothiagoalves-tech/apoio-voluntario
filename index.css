@@ -696,49 +696,11 @@ a.value-btn:active {
     z-index: 5;
     background: transparent;
     cursor: pointer;
+    pointer-events: none; /* Inicia inativo para que o clique inicial seja registrado diretamente pelo YouTube e conte como View */
 }
 
-/* Thumbnail Customizada (Capa Escura com Botão do YouTube) */
-.video-thumbnail-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 7;
-    background: radial-gradient(circle, rgba(15, 23, 42, 0.95) 0%, rgba(3, 7, 18, 0.98) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.video-thumbnail-overlay.hide {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.btn-play-thumbnail {
-    background: transparent;
-    border: none;
-    width: 68px;
-    height: 48px;
-    cursor: pointer;
-    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn-play-thumbnail:hover {
-    transform: scale(1.18);
-}
-
-.btn-play-thumbnail svg {
-    width: 68px;
-    height: 48px;
+.video-click-blocker.active {
+    pointer-events: auto; /* Ativa durante a reprodução para bloquear cliques indesejados nas logos/botões nativos */
 }
 
 /* Pause Message Overlay */
