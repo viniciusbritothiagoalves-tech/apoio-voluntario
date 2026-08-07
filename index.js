@@ -66,9 +66,6 @@ function onPlayerReady(event) {
             player.playVideo();
         });
     }
-
-    // Inicia o observador de Autoplay por rolagem de tela
-    startAutoplayObserver();
 }
 
 function onPlayerStateChange(event) {
@@ -134,29 +131,6 @@ function unlockContent() {
         if (checkoutSection) {
             checkoutSection.scrollIntoView({ behavior: 'smooth' });
         }
-    }
-}
-
-let hasAutoplayed = false;
-const observerOptions = {
-    root: null,
-    threshold: 0.5 // Aciona quando 50% do player estiver visível na tela
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !hasAutoplayed && player && typeof player.playVideo === 'function') {
-            player.playVideo();
-            hasAutoplayed = true;
-            observer.disconnect(); // Desconecta para tocar apenas uma vez por visita
-        }
-    });
-}, observerOptions);
-
-function startAutoplayObserver() {
-    const playerContainer = document.querySelector('.video-player-outer');
-    if (playerContainer) {
-        observer.observe(playerContainer);
     }
 }
 
