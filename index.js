@@ -125,12 +125,6 @@ function unlockContent() {
         
         // Exibe a seção de checkout e FAQ
         lockedContent.style.display = 'block';
-        
-        // Scroll suave sutil até a seção de checkout para guiar o olhar
-        const checkoutSection = document.getElementById('apoiar');
-        if (checkoutSection) {
-            checkoutSection.scrollIntoView({ behavior: 'smooth' });
-        }
     }
 }
 
