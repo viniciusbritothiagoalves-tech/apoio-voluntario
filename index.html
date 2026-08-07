@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apoio Voluntário — Vinicius Brito - Oficial</title>
     <meta name="description" content="Página de apoio voluntário para o canal Vinicius Brito - Oficial. Ajude a manter o canal de hinos CCB gravados com simplicidade e reverência.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
     <!-- Google Fonts: Cormorant Garamond para cabeçalhos solenes e Inter para texto legível -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,11 +25,44 @@
                 <img src="perfil.png" alt="Rosa azul profunda sobre fundo preto com gotas de orvalho - Identidade visual do canal" class="avatar-img" loading="lazy">
             </div>
             <h1 class="channel-title">Vinicius Brito - Oficial</h1>
-            <!-- Subtítulo refinado com o PORQUÊ primeiro -->
-            <p class="channel-subtitle">Para que mais lares e corações encontrem momentos de paz, comunhão e consolo em seu dia a dia, gravamos e preparamos hinos cantados com simplicidade e reverência.</p>
+            <!-- Subtítulo focado no Porquê -->
+            <p class="channel-subtitle">Para levar paz, comunhão e consolo ao seu lar nos momentos do seu dia a dia, gravamos hinos cantados com simplicidade e reverência.</p>
             
+        </header>
+
+        <!-- SEÇÃO: Vídeo Explicativo e Protetor de Navegação -->
+        <section class="video-container-wrapper">
+            <div class="video-player-outer">
+                <div id="youtube-player"></div>
+                <!-- Camada invisível de bloqueio de cliques -->
+                <div class="video-click-blocker" id="video-blocker"></div>
+                <!-- Mensagem Acolhedora ao Pausar -->
+                <div class="video-overlay-msg" id="video-pause-msg">
+                    <div class="msg-content">
+                        <p>Continue com a gente até o final — falta pouco.</p>
+                        <button type="button" class="btn-play-overlay" id="btn-play-overlay">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <span>Continuar Assistindo</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Controles Customizados (Play/Pause) -->
+                <div class="custom-video-controls" id="custom-controls">
+                    <button type="button" class="control-btn" id="btn-play-control" aria-label="Play ou Pause">
+                        <!-- Play Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="icon-play" id="icon-play"><path d="M8 5v14l11-7z"/></svg>
+                        <!-- Pause Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="icon-pause" id="icon-pause" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTEÚDO BLOQUEADO (Liberado após assistir ao vídeo ou se já assistiu anteriormente) -->
+        <div id="locked-content" style="display: none;">
+
             <!-- Selo de Transparência -->
-            <div class="transparency-seal">
+            <div class="transparency-seal" style="margin-bottom: 2.5rem;">
                 <div class="seal-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
@@ -35,239 +70,241 @@
                 </div>
                 <div class="seal-text">
                     <strong>Espaço de Apoio Voluntário</strong>
-                    <p>Para assegurar que estes hinos continuem servindo como um refúgio de paz a todos que precisam, este espaço de apoio voluntário foi criado. Os hinos são e sempre foram 100% gratuitos e de livre acesso no YouTube. A sua contribuição voluntária e opcional é direcionada unicamente para sustentar a dedicação diária de tempo e os custos de gravação e edição.</p>
+                    <p>Este espaço existe para garantir a continuidade dos hinos como um refúgio de paz. O acesso no YouTube é e sempre foi 100% gratuito. Seu apoio voluntário sustenta diretamente os custos operacionais (energia, internet, equipamentos e programas de edição) e o tempo de gravação.</p>
                 </div>
             </div>
-        </header>
 
-        <!-- SEÇÃO B: O Porquê (Carta Aberta) -->
-        <section class="card section-why">
-            <h2 class="section-title">O Porquê Deste Trabalho</h2>
-            <div class="letter-content">
-                <blockquote class="personal-quote">
-                    "Eu decidi criar este canal porque sei como a rotina pode ser cansativa e como os hinos cantados com sinceridade podem acalmar uma alma aflita. Minha intenção é que este canal seja um refúgio de paz para você e sua família nos momentos de provações ou alegrias da nossa vida."
-                </blockquote>
+            <!-- SEÇÃO B: O Porquê (Carta Aberta - Resumida para evitar redundância com o vídeo) -->
+            <section class="card section-why">
+                <h2 class="section-title">O Propósito Deste Canal</h2>
+                <div class="letter-content">
+                    <p>Este canal de hinos cantados existe para ser um refúgio de paz, comunhão e consolo em momentos de provações ou alegrias da nossa vida.</p>
+                    
+                    <!-- Atualizado: softwares -> programas -->
+                    <div class="support-callout">
+                        <p>Manter as gravações ativas exige dedicação constante de tempo para gravação e edição detalhada dos áudios e vídeos, além de custos com equipamentos, programas de edição, energia e internet. Se estes hinos trazem consolo ao seu dia e você deseja ajudar a apoiar esses custos e a continuidade do canal, sinta-se à vontade para colaborar voluntariamente.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO C: Nosso Compromisso -->
+            <section class="section-promises">
+                <h2 class="section-title text-center">Nosso Compromisso</h2>
+                <p class="section-subtitle-small text-center">Diretrizes permanentes para garantir a sua total tranquilidade:</p>
                 
-                <p>Para alcançar esse propósito de levar consolo, cada hino do nosso hinário é cantado com cuidado e reverência, buscando preservar a simplicidade e a beleza de cada melodia.</p>
+                <div class="promises-grid">
+                    <div class="promise-card">
+                        <div class="promise-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                            </svg>
+                        </div>
+                        <h3>Acesso 100% Livre</h3>
+                        <p>Os hinos são e sempre foram gratuitos no YouTube, sem cobranças ou áreas restritas para membros.</p>
+                    </div>
+                    
+                    <div class="promise-card">
+                        <div class="promise-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3>Sem Pressão ou Cobrança</h3>
+                        <p>O apoio é espontâneo. Ouça quando desejar e colabore somente se sentir no coração e puder apoiar.</p>
+                    </div>
+
+                    <div class="promise-card">
+                        <div class="promise-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                            </svg>
+                        </div>
+                        <h3>Sem Vantagens Exclusivas</h3>
+                        <p>Quem apoia ajuda a manter o canal aberto para todos igualmente. Não há trocas comerciais ou privilégios.</p>
+                    </div>
+
+                    <div class="promise-card">
+                        <div class="promise-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+                        </div>
+                        <h3>Simplicidade no Louvor</h3>
+                        <p>Mantemos o foco unicamente na melodia e na letra do hino, com respeito, seriedade e sem interrupções.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO D: Como Funciona o Apoio -->
+            <section class="card section-support" id="apoiar">
+                <h2 class="section-title text-center">Fazer um Apoio Voluntário</h2>
+                <p class="section-subtitle-small text-center">Escolha a frequência e selecione o valor desejado:</p>
                 
-                <p>Manter este trabalho ativo exige dedicação constante de tempo para gravação e edição detalhada dos áudios e dos vídeos. Além disso, há custos de manutenção com equipamentos, softwares de edição, energia e internet. Se estes hinos têm sido um consolo para sua vida e você deseja ajudar a sustentar os custos desse trabalho e o tempo dedicado a ele, sinta-se à vontade para colaborar de forma voluntária e de coração.</p>
-            </div>
-        </section>
-
-        <!-- SEÇÃO C: O Que É Permanente -->
-        <section class="section-promises">
-            <h2 class="section-title text-center">Nosso Compromisso</h2>
-            <p class="section-subtitle-small text-center">Para que o canal continue servindo ao propósito de levar paz e comunhão a todos, estas diretrizes são permanentes:</p>
-            
-            <div class="promises-grid">
-                <div class="promise-card">
-                    <div class="promise-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
-                    </div>
-                    <h3>Hinos 100% Gratuitos</h3>
-                    <p>Os hinos são e sempre foram livres para qualquer pessoa assistir no YouTube. Nenhum hino é cobrado nem fica trancado em área exclusiva — o canal sempre funcionou assim para beneficiar a quem precisa.</p>
-                </div>
-                
-                <div class="promise-card">
-                    <div class="promise-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <h3>Sem Cobrança ou Pressão</h3>
-                    <p>Não há obrigações. Você escuta quando quiser e apoia somente se sentir no coração e se puder colaborar financeiramente.</p>
+                <div class="support-tabs">
+                    <button class="tab-btn active" data-tab="mensal">Contribuição Mensal</button>
+                    <button class="tab-btn" data-tab="unica">Contribuição Única</button>
                 </div>
 
-                <div class="promise-card">
-                    <div class="promise-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                        </svg>
-                    </div>
-                    <h3>Sem Conteúdo Bloqueado</h3>
-                    <p>Não existem "recompensas exclusivas" ou trocas por benefícios. Quem apoia faz isso para ajudar a todos os ouvintes do canal igualmente, sustentando a continuidade do trabalho.</p>
-                </div>
-
-                <div class="promise-card">
-                    <div class="promise-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                        </svg>
-                    </div>
-                    <h3>Foco no Louvor</h3>
-                    <p>Mantemos o formato que você já conhece e confia: hinos focados na letra e na melodia, com seriedade e respeito.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEÇÃO D: Como Funciona o Apoio -->
-        <section class="card section-support" id="apoiar">
-            <h2 class="section-title text-center">Fazer um Apoio Voluntário</h2>
-            <p class="section-subtitle-small text-center">Escolha o tipo de contribuição e depois selecione o valor desejado:</p>
-            
-            <div class="support-tabs">
-                <button class="tab-btn active" data-tab="mensal">Contribuição Mensal</button>
-                <button class="tab-btn" data-tab="unica">Contribuição Única</button>
-            </div>
-
-            <div class="support-panel">
-                <!-- Seletor de valores visíveis (R$ 10, R$ 15, R$ 20, R$ 25) -->
-                <div class="value-selector">
-                    <a href="https://pay.kiwify.com.br/iIyhkIR" class="value-btn" data-value="10" target="_blank" rel="noopener noreferrer">R$ 10,00</a>
-                    <a href="https://pay.kiwify.com.br/raRLFdO" class="value-btn" data-value="15" target="_blank" rel="noopener noreferrer">R$ 15,00</a>
-                    <a href="https://pay.kiwify.com.br/KBu9d8j" class="value-btn" data-value="20" target="_blank" rel="noopener noreferrer">R$ 20,00</a>
-                    <a href="https://pay.kiwify.com.br/0GA3vYX" class="value-btn" data-value="25" target="_blank" rel="noopener noreferrer">R$ 25,00</a>
-                </div>
-
-                <!-- Aba clicável para revelar valores maiores -->
-                <div class="toggle-larger-wrapper text-center">
-                    <button type="button" id="toggle-larger-values" class="toggle-larger-btn">
-                        <span>Quero contribuir com um valor maior</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 arrow-icon">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Seção Oculta para Valores Maiores (R$ 50, R$ 100, R$ 150, R$ 200) -->
-                <div class="larger-values-panel" id="larger-values-panel">
+                <div class="support-panel">
+                    <!-- Seletor de valores visíveis (R$ 10, R$ 15, R$ 20, R$ 25) -->
                     <div class="value-selector">
-                        <a href="https://pay.kiwify.com.br/FV9NlOh" class="value-btn" data-value="50" target="_blank" rel="noopener noreferrer">R$ 50,00</a>
-                        <a href="https://pay.kiwify.com.br/5NCQXdZ" class="value-btn" data-value="100" target="_blank" rel="noopener noreferrer">R$ 100,00</a>
-                        <a href="https://pay.kiwify.com.br/B4ygOjr" class="value-btn" data-value="150" target="_blank" rel="noopener noreferrer">R$ 150,00</a>
-                        <a href="https://pay.kiwify.com.br/NAzO8tO" class="value-btn" data-value="200" target="_blank" rel="noopener noreferrer">R$ 200,00</a>
+                        <a href="https://pay.kiwify.com.br/iIyhkIR" class="value-btn" data-value="10" target="_blank" rel="noopener noreferrer">R$ 10,00</a>
+                        <a href="https://pay.kiwify.com.br/raRLFdO" class="value-btn" data-value="15" target="_blank" rel="noopener noreferrer">R$ 15,00</a>
+                        <a href="https://pay.kiwify.com.br/KBu9d8j" class="value-btn" data-value="20" target="_blank" rel="noopener noreferrer">R$ 20,00</a>
+                        <a href="https://pay.kiwify.com.br/0GA3vYX" class="value-btn" data-value="25" target="_blank" rel="noopener noreferrer">R$ 25,00</a>
                     </div>
-                </div>
 
-                <!-- Resumo e Nota Informativa de Redirecionamento -->
-                <div class="redirect-info-container text-center">
-                    <p class="redirect-hint">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="lock-icon" style="display:inline-block; width:18px; height:18px; vertical-align:-4px; margin-right:6px; color: var(--color-blue-light);">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                        </svg>
-                        Ao clicar no valor desejado, você será direcionado para o checkout de pagamento seguro da Kiwify em uma nova guia. O valor escolhido apoia unicamente os custos de produção e o tempo de dedicação ao canal.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEÇÃO E: Perguntas Frequentes (FAQ) -->
-        <section class="section-faq">
-            <h2 class="section-title text-center">Dúvidas Frequentes</h2>
-            <p class="section-subtitle-small text-center">Esclarecendo dúvidas de forma transparente e sincera:</p>
-            
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-trigger">
-                        <span>1. Isso é uma forma de vender os hinos?</span>
-                        <span class="faq-icon-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    <!-- Aba clicável para revelar valores maiores -->
+                    <div class="toggle-larger-wrapper text-center">
+                        <button type="button" id="toggle-larger-values" class="toggle-larger-btn">
+                            <span>Quero contribuir com um valor maior</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 arrow-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                             </svg>
-                        </span>
-                    </button>
-                    <div class="faq-content">
-                        <p><strong>Não.</strong> Os hinos são uma expressão de fé e são inteiramente gratuitos para qualquer pessoa ouvir ou compartilhar com quem sentir. O apoio voluntário serve único e exclusivamente para sustentar o trabalho do criador: o tempo dedicado à gravação e edição detalhada dos áudios e vídeos, bem como a manutenção técnica dos equipamentos e softwares que tornam as gravações possíveis.</p>
+                        </button>
                     </div>
-                </div>
 
-                <div class="faq-item">
-                    <button class="faq-trigger">
-                        <span>2. Preciso pagar para assistir aos vídeos no YouTube?</span>
-                        <span class="faq-icon-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    <!-- Seção Oculta para Valores Maiores (R$ 50, R$ 100, R$ 150, R$ 200) -->
+                    <div class="larger-values-panel" id="larger-values-panel">
+                        <div class="value-selector">
+                            <a href="https://pay.kiwify.com.br/FV9NlOh" class="value-btn" data-value="50" target="_blank" rel="noopener noreferrer">R$ 50,00</a>
+                            <a href="https://pay.kiwify.com.br/5NCQXdZ" class="value-btn" data-value="100" target="_blank" rel="noopener noreferrer">R$ 100,00</a>
+                            <a href="https://pay.kiwify.com.br/B4ygOjr" class="value-btn" data-value="150" target="_blank" rel="noopener noreferrer">R$ 150,00</a>
+                            <a href="https://pay.kiwify.com.br/NAzO8tO" class="value-btn" data-value="200" target="_blank" rel="noopener noreferrer">R$ 200,00</a>
+                        </div>
+                    </div>
+
+                    <!-- Resumo e Nota Informativa de Redirecionamento -->
+                    <div class="redirect-info-container text-center">
+                        <p class="redirect-hint">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="lock-icon" style="display:inline-block; width:18px; height:18px; vertical-align:-4px; margin-right:6px; color: var(--color-blue-light);">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                             </svg>
-                        </span>
-                    </button>
-                    <div class="faq-content">
-                        <p><strong>Não.</strong> O canal no YouTube permanece de livre acesso público e gratuito, sem qualquer restrição para os internautas.</p>
+                            Ao clicar no valor desejado, você será direcionado para o checkout de pagamento seguro da Kiwify em uma nova guia. Sua ajuda é destinada exclusivamente a cobrir os custos e o tempo de produção.
+                        </p>
                     </div>
                 </div>
+            </section>
 
-                <div class="faq-item">
-                    <button class="faq-trigger">
-                        <span>3. Isso tem a ver com a igreja ou é algo pessoal do canal?</span>
-                        <span class="faq-icon-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </span>
-                    </button>
-                    <div class="faq-content">
-                        <p><strong>É uma iniciativa pessoal.</strong> Este projeto de gravação de hinos é independente e não possui nenhum vínculo administrativo, financeiro ou formal com a Congregação Cristã no Brasil (CCB). Embora eu, Vinicius, seja membro da igreja, a dedicação de tempo para as gravações, a aquisição de equipamentos e os custos de internet e energia são mantidos de forma inteiramente particular.</p>
+            <!-- SEÇÃO E: Perguntas Frequentes (FAQ) -->
+            <section class="section-faq">
+                <h2 class="section-title text-center">Dúvidas Frequentes</h2>
+                <p class="section-subtitle-small text-center">Esclarecendo dúvidas de forma transparente:</p>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-trigger">
+                            <span>1. Isso é uma forma de vender os hinos?</span>
+                            <span class="faq-icon-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <!-- Atualizado: softwares -> programas -->
+                            <p><strong>Não.</strong> Os hinos são gratuitos para ouvir e compartilhar. O apoio serve unicamente para ajudar a cobrir o tempo de gravação e edição de áudio/vídeo, além dos custos de equipamentos e programas.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger">
+                            <span>2. Preciso pagar para assistir aos vídeos no YouTube?</span>
+                            <span class="faq-icon-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <p><strong>Não.</strong> O acesso no YouTube é e sempre foi totalmente livre e gratuito para todos.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger">
+                            <span>3. Isso tem a ver com a igreja ou é algo pessoal do canal?</span>
+                            <span class="faq-icon-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <p><strong>É uma iniciativa particular.</strong> Este projeto de gravação de hinos é independente e não possui nenhum vínculo formal com a Congregação Cristã no Brasil (CCB). Embora eu, Vinicius, seja membro da igreja, a gravação, equipamentos e custos são mantidos de forma estritamente pessoal.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pergunta 4 (Diferença entre apoio e coleta) -->
+                    <div class="faq-item">
+                        <button class="faq-trigger">
+                            <span>4. Este apoio voluntário é considerado uma coleta?</span>
+                            <span class="faq-icon-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <!-- Atualizado: softwares -> programas -->
+                            <p><strong>Não.</strong> A coleta é a contribuição oficial da igreja para manutenção de templos, necessitados ou viagens ministeriais, com contas prestadas formalmente à igreja. Este apoio é uma ajuda de caráter privado, destinada a colaborar com as despesas que o criador tem para manter o canal ativo (como energia, internet, programas de edição e equipamentos). Como é uma iniciativa particular, não há prestação de contas pública.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger">
+                            <span>5. É seguro fazer a contribuição online?</span>
+                            <span class="faq-icon-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <p><strong>Sim.</strong> O pagamento é processado pela Kiwify, uma das maiores e mais seguras plataformas de pagamentos do Brasil, com criptografia segura de dados.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger">
+                            <span>6. O que acontece se eu não puder ou não quiser apoiar?</span>
+                            <span class="faq-icon-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <p><strong>Nada.</strong> Você continua convidado a ouvir os hinos e comentar. O apoio é totalmente voluntário e só deve ser feito se não fizer falta ao seu orçamento familiar.</p>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Pergunta 4 (Diferença entre apoio e coleta) -->
-                <div class="faq-item">
-                    <button class="faq-trigger">
-                        <span>4. Este apoio voluntário é considerado uma coleta?</span>
-                        <span class="faq-icon-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </span>
-                    </button>
-                    <div class="faq-content">
-                        <p><strong>Não, de maneira alguma.</strong> A coleta é uma contribuição destinada à manutenção e construção das casas de oração, auxílio aos necessitados ou viagens dos nossos irmãos do ministério a serviço da obra de Deus, tendo toda a sua prestação de contas registrada e informada formalmente. Este apoio voluntário ao canal **não é uma coleta**. Trata-se de uma ajuda de caráter estritamente pessoal e privado, destinada unicamente a colaborar com as despesas de manutenção técnica e dedicação de tempo do criador para manter as gravações no YouTube. Por ser um canal particular e de iniciativa própria, não haverá qualquer prestação de contas pública dessas contribuições.</p>
-                    </div>
+            <!-- SEÇÃO F: Chamada Final -->
+            <section class="card section-conclusion text-center">
+                <p class="conclusion-text">Se estes hinos trazem consolo ao seu dia e você deseja apoiar a continuidade das gravações e edições, sinta-se à vontade para contribuir voluntariamente.</p>
+                <p class="conclusion-signature">Agradeço por sua companhia, carinho e orações. Deus abençoe você e sua família.</p>
+                
+                <div style="margin-top: 1.8rem;">
+                    <a href="#apoiar" class="btn btn-primary scroll-to-btn">Fazer uma contribuição voluntária</a>
                 </div>
+            </section>
 
-                <div class="faq-item">
-                    <button class="faq-trigger">
-                        <span>5. É seguro fazer a contribuição online?</span>
-                        <span class="faq-icon-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </span>
-                    </button>
-                    <div class="faq-content">
-                        <p><strong>Sim, é totalmente seguro.</strong> O site direciona para a Kiwify, uma das maiores e mais seguras plataformas de processamento de pagamentos do Brasil, que protege seus dados com alta tecnologia de criptografia.</p>
-                    </div>
-                </div>
+            <!-- SEÇÃO G: Rodapé -->
+            <footer class="footer">
+                <p class="footer-title">Vinicius Brito - Oficial</p>
+                <p class="footer-desc">Canal de hinos cantados</p>
+                <p class="footer-legal">
+                    Feito com simplicidade, mantido com dedicação e apoiado voluntariamente.<br>
+                    <strong>Esclarecimento:</strong> Canal particular e independente, sem qualquer vínculo administrativo ou financeiro com a Congregação Cristã no Brasil (CCB). O criador é membro, mas grava os hinos de forma pessoal.
+                </p>
+                <p class="footer-copyright">&copy; <span id="current-year">2026</span> Vinicius Brito. Todos os direitos reservados.</p>
+            </footer>
 
-                <div class="faq-item">
-                    <button class="faq-trigger">
-                        <span>6. O que acontece se eu não puder ou não quiser apoiar?</span>
-                        <span class="faq-icon-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </span>
-                    </button>
-                    <div class="faq-content">
-                        <p><strong>Não acontece absolutamente nada.</strong> Você é muito bem-vindo no canal para ouvir os hinos e deixar suas palavras nos comentários. O apoio financeiro é estritamente espontâneo, destinado a quem deseja e pode colaborar sem prejuízo ao orçamento de sua família.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEÇÃO F: Chamada Final -->
-        <section class="card section-conclusion text-center">
-            <p class="conclusion-text">Se estes hinos têm servido de consolo para sua vida e você deseja apoiar a continuidade deste trabalho, colaborando com os custos operacionais e com o tempo dedicado à produção, sinta-se à vontade para fazer uma contribuição voluntária.</p>
-            <p class="conclusion-signature">Agradeço de coração pela sua companhia, pelas suas orações e pelo seu carinho. Deus abençoe você e sua família.</p>
-            
-            <div style="margin-top: 1.8rem;">
-                <a href="#apoiar" class="btn btn-primary scroll-to-btn">Fazer uma contribuição voluntária</a>
-            </div>
-        </section>
+        </div> <!-- FIM DO LOCKED CONTENT -->
 
     </main>
-
-    <!-- SEÇÃO G: Rodapé -->
-    <footer class="footer">
-        <p class="footer-title">Vinicius Brito - Oficial</p>
-        <p class="footer-desc">Canal de hinos cantados</p>
-        <p class="footer-legal">
-            Um trabalho feito com simplicidade, mantido com amor e apoiado por quem deseja.<br>
-            <strong>Esclarecimento importante:</strong> Este canal é uma iniciativa particular e não possui nenhum vínculo administrativo ou financeiro com a Congregação Cristã no Brasil (CCB). O criador é membro da CCB, mas realiza a gravação dos hinos de forma totalmente independente e pessoal.
-        </p>
-        <p class="footer-copyright">&copy; <span id="current-year">2026</span> Vinicius Brito. Todos os direitos reservados.</p>
-    </footer>
 
     <script src="index.js"></script>
 </body>

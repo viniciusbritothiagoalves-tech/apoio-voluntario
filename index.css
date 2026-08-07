@@ -99,7 +99,7 @@ body {
 /* SEÇÃO A: Cabeçalho / Hero */
 .hero-section {
     text-align: center;
-    padding: 1.5rem 0 1rem 0;
+    padding: 1.5rem 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -137,7 +137,7 @@ body {
     font-size: 1.25rem;
     color: var(--text-secondary);
     max-width: 550px;
-    margin: 0 auto 3rem auto;
+    margin: 0 auto 0 auto;
     font-weight: 400;
     line-height: 1.6;
 }
@@ -599,6 +599,170 @@ a.value-btn:active {
     font-size: 0.85rem;
     color: var(--text-muted);
     margin-top: 2rem;
+}
+
+/* Video Player Styling */
+.video-container-wrapper {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.video-player-outer {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background: #000;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+#youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Click Blocker */
+.video-click-blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Pause Message Overlay */
+.video-overlay-msg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 8;
+    background: rgba(2, 3, 6, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.video-overlay-msg.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.msg-content {
+    text-align: center;
+    padding: 2rem;
+    max-width: 420px;
+}
+
+.msg-content p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-body);
+}
+
+.btn-play-overlay {
+    background: var(--color-blue-accent);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
+    transition: var(--transition-smooth);
+    font-family: var(--font-body);
+}
+
+.btn-play-overlay:hover {
+    background: #2563eb;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.btn-play-overlay svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Custom Video Controls Overlay */
+.custom-video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.control-btn:hover {
+    color: var(--color-blue-light);
+    transform: scale(1.1);
+}
+
+.control-btn svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Caixa de destaque de sustentação (Carta Aberta) */
+.support-callout {
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-left: 3px solid var(--color-blue-accent);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.support-callout p {
+    font-size: 1.05rem !important;
+    line-height: 1.75;
+    margin-bottom: 1rem !important;
+    color: var(--text-secondary);
+}
+
+.support-callout p:last-child {
+    margin-bottom: 0 !important;
+    font-weight: 500;
+    color: var(--text-primary);
 }
 
 /* Foco de Acessibilidade */

@@ -1,5 +1,136 @@
+// Carrega a API do IFrame do YouTube de forma assíncrona
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+const firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+let player;
+let progressInterval;
+const UNLOCK_TIME_SECONDS = 170; // 2 minutos e 50 segundos
+
+// Inicialização do Player do YouTube (Função global requerida pela API)
+window.onYouTubeIframeAPIReady = function() {
+    player = new YT.Player('youtube-player', {
+        videoId: 'y-320qq746o',
+        playerVars: {
+            'controls': 0,
+            'modestbranding': 1,
+            'rel': 0,
+            'fs': 0,
+            'iv_load_policy': 3,
+            'disablekb': 1,
+            'origin': window.location.origin
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+};
+
+function onPlayerReady(event) {
+    const playBtnControl = document.getElementById('btn-play-control');
+    const playBtnOverlay = document.getElementById('btn-play-overlay');
+    const videoBlocker = document.getElementById('video-blocker');
+    const iconPlay = document.getElementById('icon-play');
+    const iconPause = document.getElementById('icon-pause');
+
+    function togglePlay() {
+        const state = player.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+            player.pauseVideo();
+        } else {
+            player.playVideo();
+        }
+    }
+
+    // Toggle ao clicar na área do vídeo (click blocker)
+    if (videoBlocker) {
+        videoBlocker.addEventListener('click', togglePlay);
+    }
+
+    // Toggle nos botões de controle
+    if (playBtnControl) {
+        playBtnControl.addEventListener('click', togglePlay);
+    }
+
+    if (playBtnOverlay) {
+        playBtnOverlay.addEventListener('click', () => {
+            player.playVideo();
+        });
+    }
+}
+
+function onPlayerStateChange(event) {
+    const pauseMsg = document.getElementById('video-pause-msg');
+    const iconPlay = document.getElementById('icon-play');
+    const iconPause = document.getElementById('icon-pause');
+    const lockedContent = document.getElementById('locked-content');
+
+    if (event.data === YT.PlayerState.PLAYING) {
+        // Oculta a mensagem de pausa
+        if (pauseMsg) pauseMsg.classList.remove('show');
+        
+        // Altera o ícone para "pause" nos controles customizados
+        if (iconPlay) iconPlay.style.display = 'none';
+        if (iconPause) iconPause.style.display = 'block';
+
+        // Monitora o tempo assistido
+        clearInterval(progressInterval);
+        progressInterval = setInterval(() => {
+            if (player && typeof player.getCurrentTime === 'function') {
+                const currentTime = player.getCurrentTime();
+                if (currentTime >= UNLOCK_TIME_SECONDS) {
+                    clearInterval(progressInterval);
+                    unlockContent();
+                }
+            }
+        }, 1000);
+
+    } else if (event.data === YT.PlayerState.PAUSED) {
+        // Exibe a mensagem acolhedora de pausa
+        if (pauseMsg) pauseMsg.classList.add('show');
+        
+        // Altera o ícone para "play" nos controles customizados
+        if (iconPlay) iconPlay.style.display = 'block';
+        if (iconPause) iconPause.style.display = 'none';
+        
+        clearInterval(progressInterval);
+
+    } else if (event.data === YT.PlayerState.ENDED) {
+        if (iconPlay) iconPlay.style.display = 'block';
+        if (iconPause) iconPause.style.display = 'none';
+        clearInterval(progressInterval);
+    }
+}
+
+function unlockContent() {
+    const lockedContent = document.getElementById('locked-content');
+    if (lockedContent) {
+        // Salva a flag na memória local para evitar pedir para assistir de novo na próxima visita
+        localStorage.setItem('apoio_video_assistido', 'true');
+        
+        // Exibe a seção de checkout e FAQ
+        lockedContent.style.display = 'block';
+        
+        // Scroll suave sutil até a seção de checkout para guiar o olhar
+        const checkoutSection = document.getElementById('apoiar');
+        if (checkoutSection) {
+            checkoutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // === 1. FAQ ACCORDION ===
+    // === VERIFICAÇÃO INICIAL DE MEMÓRIA (FLAG DE VÍDEO ASSISTIDO) ===
+    const lockedContent = document.getElementById('locked-content');
+    const isAlreadyWatched = localStorage.getItem('apoio_video_assistido') === 'true';
+    
+    if (isAlreadyWatched && lockedContent) {
+        lockedContent.style.display = 'block';
+    }
+
+    // === FAQ ACCORDION ===
     const faqTriggers = document.querySelectorAll('.faq-trigger');
     
     faqTriggers.forEach(trigger => {
@@ -27,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === 2. LINKS DE CHECKOUT E ALTERNÂNCIA MENSAL/ÚNICA ===
+    // === LINKS DE CHECKOUT E ALTERNÂNCIA MENSAL/ÚNICA ===
     const tabBtns = document.querySelectorAll('.tab-btn');
     const valueLinks = document.querySelectorAll('.value-btn');
     
@@ -55,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function updateCheckoutLinks(type) {
-        // Atualiza os links Kiwify dos botões
         valueLinks.forEach(link => {
             const value = link.getAttribute('data-value');
             if (checkoutLinks[type] && checkoutLinks[type][value]) {
@@ -77,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializa os links com a aba ativa (mensal por padrão)
     updateCheckoutLinks('mensal');
 
-    // === 3. ACCORDION DE VALORES MAIORES ===
+    // === ACCORDION DE VALORES MAIORES ===
     const toggleLargerBtn = document.getElementById('toggle-larger-values');
     const largerValuesPanel = document.getElementById('larger-values-panel');
 
@@ -95,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // === 4. LINKS DE ROLAGEM SUAVE ===
+    // === LINKS DE ROLAGEM SUAVE ===
     const scrollBtns = document.querySelectorAll('.scroll-to-btn');
     scrollBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -105,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === 5. ANO ATUAL AUTOMÁTICO NO RODAPÉ ===
+    // === ANO ATUAL AUTOMÁTICO NO RODAPÉ ===
     const currentYearElement = document.getElementById('current-year');
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
