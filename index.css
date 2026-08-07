@@ -218,6 +218,7 @@ body {
 /* SEÇÃO C: O Que É Permanente */
 .section-promises {
     padding: 1rem 0;
+    margin-top: 1.5rem;
 }
 
 .section-subtitle-small {
@@ -498,6 +499,10 @@ a.value-btn:active {
 }
 
 /* SEÇÃO E: FAQ Accordion */
+.section-faq {
+    margin-top: 1.5rem;
+}
+
 .faq-container {
     display: flex;
     flex-direction: column;
