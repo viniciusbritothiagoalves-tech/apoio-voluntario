@@ -75,6 +75,11 @@ function onPlayerStateChange(event) {
     const lockedContent = document.getElementById('locked-content');
 
     if (event.data === YT.PlayerState.PLAYING) {
+        // Tenta forçar qualidade máxima de vídeo (4K / HD)
+        if (player && typeof player.setPlaybackQuality === 'function') {
+            player.setPlaybackQuality('highres');
+        }
+
         // Oculta a mensagem de pausa
         if (pauseMsg) pauseMsg.classList.remove('show');
         
