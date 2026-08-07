@@ -10,7 +10,7 @@ Este documento contém o texto (copy) otimizado e reduzido para a página de apo
 > Vinicius Brito - Oficial
 
 **Subtítulo / Mensagem de Abertura:**
-> Para levar paz, comunhão e consolo ao seu lar nos momentos do seu dia a dia, gravamos hinos cantados com simplicidade e reverência.
+> Assista ao vídeo abaixo:
 
 **Selo de Transparência e Gratuidade (Em destaque):**
 > **Espaço de Apoio Voluntário**

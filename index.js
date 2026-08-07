@@ -31,6 +31,7 @@ window.onYouTubeIframeAPIReady = function() {
 function onPlayerReady(event) {
     const playBtnControl = document.getElementById('btn-play-control');
     const playBtnOverlay = document.getElementById('btn-play-overlay');
+    const playBtnThumbnail = document.getElementById('btn-play-thumbnail');
     const videoBlocker = document.getElementById('video-blocker');
     const iconPlay = document.getElementById('icon-play');
     const iconPause = document.getElementById('icon-pause');
@@ -59,6 +60,15 @@ function onPlayerReady(event) {
             player.playVideo();
         });
     }
+
+    if (playBtnThumbnail) {
+        playBtnThumbnail.addEventListener('click', () => {
+            player.playVideo();
+        });
+    }
+
+    // Inicia o observador de Autoplay por rolagem de tela
+    startAutoplayObserver();
 }
 
 function onPlayerStateChange(event) {
@@ -70,6 +80,12 @@ function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
         // Oculta a mensagem de pausa
         if (pauseMsg) pauseMsg.classList.remove('show');
+        
+        // Oculta a thumbnail customizada ao começar a reproduzir
+        const thumbnail = document.getElementById('video-thumbnail');
+        if (thumbnail) {
+            thumbnail.classList.add('hide');
+        }
         
         // Altera o ícone para "pause" nos controles customizados
         if (iconPlay) iconPlay.style.display = 'none';
@@ -118,6 +134,29 @@ function unlockContent() {
         if (checkoutSection) {
             checkoutSection.scrollIntoView({ behavior: 'smooth' });
         }
+    }
+}
+
+let hasAutoplayed = false;
+const observerOptions = {
+    root: null,
+    threshold: 0.5 // Aciona quando 50% do player estiver visível na tela
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAutoplayed && player && typeof player.playVideo === 'function') {
+            player.playVideo();
+            hasAutoplayed = true;
+            observer.disconnect(); // Desconecta para tocar apenas uma vez por visita
+        }
+    });
+}, observerOptions);
+
+function startAutoplayObserver() {
+    const playerContainer = document.querySelector('.video-player-outer');
+    if (playerContainer) {
+        observer.observe(playerContainer);
     }
 }
 
@@ -194,18 +233,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const frequencyWarning = document.getElementById('frequency-warning');
+
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            tabBtns.forEach(b => b.classList.remove('active'));
+            tabBtns.forEach(b => {
+                b.classList.remove('active');
+                b.classList.remove('pulse-highlight');
+            });
             btn.classList.add('active');
+            
+            if (frequencyWarning) {
+                frequencyWarning.style.display = 'none';
+            }
             
             const selectedType = btn.getAttribute('data-tab');
             updateCheckoutLinks(selectedType);
         });
     });
 
-    // Inicializa os links com a aba ativa (mensal por padrão)
-    updateCheckoutLinks('mensal');
+    // Monitora o clique nos valores para garantir seleção prévia
+    valueLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const hasSelection = document.querySelector('.tab-btn.active');
+            if (!hasSelection) {
+                e.preventDefault();
+                
+                if (frequencyWarning) {
+                    frequencyWarning.style.display = 'flex';
+                    frequencyWarning.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                // Ativa a animação de piscar nos botões de alternância
+                tabBtns.forEach(b => b.classList.add('pulse-highlight'));
+            }
+        });
+    });
 
     // === ACCORDION DE VALORES MAIORES ===
     const toggleLargerBtn = document.getElementById('toggle-larger-values');

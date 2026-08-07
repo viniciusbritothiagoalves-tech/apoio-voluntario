@@ -312,6 +312,47 @@ body {
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }
 
+/* Mensagem de Aviso de Frequência */
+.frequency-warning {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #f87171;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    animation: fadeIn 0.3s ease;
+}
+
+.warning-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #ef4444;
+}
+
+/* Efeito Pulsante para Guiar Seleção */
+.pulse-highlight {
+    animation: tab-flash 1.2s infinite ease-in-out;
+    border: 1px solid rgba(59, 130, 246, 0.5) !important;
+}
+
+@keyframes tab-flash {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
 
 
 /* Seletor de valores (Tratado como Grid de Links de texto direto) */
@@ -639,6 +680,49 @@ a.value-btn:active {
     cursor: pointer;
 }
 
+/* Thumbnail Customizada (Capa Escura com Botão do YouTube) */
+.video-thumbnail-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 7;
+    background: radial-gradient(circle, rgba(15, 23, 42, 0.95) 0%, rgba(3, 7, 18, 0.98) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.video-thumbnail-overlay.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.btn-play-thumbnail {
+    background: transparent;
+    border: none;
+    width: 68px;
+    height: 48px;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-play-thumbnail:hover {
+    transform: scale(1.18);
+}
+
+.btn-play-thumbnail svg {
+    width: 68px;
+    height: 48px;
+}
+
 /* Pause Message Overlay */
 .video-overlay-msg {
     position: absolute;
@@ -647,8 +731,8 @@ a.value-btn:active {
     width: 100%;
     height: 100%;
     z-index: 8;
-    background: rgba(2, 3, 6, 0.85);
-    backdrop-filter: blur(4px);
+    background: rgba(2, 3, 6, 0.88);
+    backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -669,33 +753,51 @@ a.value-btn:active {
 }
 
 .msg-content p {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 500;
     color: var(--text-primary);
     margin-bottom: 1.5rem;
     font-family: var(--font-body);
 }
 
+/* Botão de Retomada Pulsante */
+@keyframes button-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.6);
+        transform: scale(1);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(59, 130, 246, 0);
+        transform: scale(1.03);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+        transform: scale(1);
+    }
+}
+
 .btn-play-overlay {
     background: var(--color-blue-accent);
     color: #ffffff;
     border: none;
-    padding: 12px 24px;
+    padding: 14px 28px;
     border-radius: 30px;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
-    transition: var(--transition-smooth);
     font-family: var(--font-body);
+    animation: button-pulse 1.8s infinite ease-in-out;
+    transition: background-color 0.2s ease;
 }
 
 .btn-play-overlay:hover {
     background: #2563eb;
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    animation: none; /* Pausa pulso no hover */
+    transform: scale(1.05);
 }
 
 .btn-play-overlay svg {

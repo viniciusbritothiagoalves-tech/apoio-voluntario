@@ -25,8 +25,8 @@
                 <img src="perfil.png" alt="Rosa azul profunda sobre fundo preto com gotas de orvalho - Identidade visual do canal" class="avatar-img" loading="lazy">
             </div>
             <h1 class="channel-title">Vinicius Brito - Oficial</h1>
-            <!-- Subtítulo focado no Porquê -->
-            <p class="channel-subtitle">Para levar paz, comunhão e consolo ao seu lar nos momentos do seu dia a dia, gravamos hinos cantados com simplicidade e reverência.</p>
+            <!-- Subtítulo / CTA do Vídeo -->
+            <p class="channel-subtitle">Assista ao vídeo abaixo:</p>
             
         </header>
 
@@ -36,6 +36,15 @@
                 <div id="youtube-player"></div>
                 <!-- Camada invisível de bloqueio de cliques -->
                 <div class="video-click-blocker" id="video-blocker"></div>
+                <!-- Thumbnail Customizada (Capa Escura com Botão do YouTube) -->
+                <div class="video-thumbnail-overlay" id="video-thumbnail">
+                    <button type="button" class="btn-play-thumbnail" id="btn-play-thumbnail" aria-label="Iniciar Vídeo">
+                        <svg viewBox="0 0 68 48">
+                            <path d="M66.52,7.74c-0.78-2.93-3.09-5.24-6.02-6.02C55.21,0.5,34,0.5,34,0.5S12.79,0.5,7.5,1.72C4.57,2.5,2.26,4.81,1.48,7.74C0.25,13.03,0.25,24,0.25,24s0,10.97,1.23,16.26c0.78,2.93,3.09,5.24,6.02,6.02C12.79,47.5,34,47.5,34,47.5s21.21,0,26.5-1.22c2.93-0.78,5.24-3.09,6.02-6.02C67.75,34.97,67.75,24,67.75,24S67.75,13.03,66.52,7.74z" fill="#ff0000"></path>
+                            <polygon points="27,33 44,24 27,15" fill="#ffffff"></polygon>
+                        </svg>
+                    </button>
+                </div>
                 <!-- Mensagem Acolhedora ao Pausar -->
                 <div class="video-overlay-msg" id="video-pause-msg">
                     <div class="msg-content">
@@ -141,17 +150,25 @@
                 <p class="section-subtitle-small text-center">Escolha a frequência e selecione o valor desejado:</p>
                 
                 <div class="support-tabs">
-                    <button class="tab-btn active" data-tab="mensal">Contribuição Mensal</button>
+                    <button class="tab-btn" data-tab="mensal">Contribuição Mensal</button>
                     <button class="tab-btn" data-tab="unica">Contribuição Única</button>
+                </div>
+
+                <!-- Mensagem de Orientação / Aviso sobre Escolha de Frequência -->
+                <div class="frequency-warning" id="frequency-warning" style="display: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="warning-icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                    </svg>
+                    <span>Escolha uma opção acima ("Mensal" ou "Única") antes de clicar no valor.</span>
                 </div>
 
                 <div class="support-panel">
                     <!-- Seletor de valores visíveis (R$ 10, R$ 15, R$ 20, R$ 25) -->
                     <div class="value-selector">
-                        <a href="https://pay.kiwify.com.br/iIyhkIR" class="value-btn" data-value="10" target="_blank" rel="noopener noreferrer">R$ 10,00</a>
-                        <a href="https://pay.kiwify.com.br/raRLFdO" class="value-btn" data-value="15" target="_blank" rel="noopener noreferrer">R$ 15,00</a>
-                        <a href="https://pay.kiwify.com.br/KBu9d8j" class="value-btn" data-value="20" target="_blank" rel="noopener noreferrer">R$ 20,00</a>
-                        <a href="https://pay.kiwify.com.br/0GA3vYX" class="value-btn" data-value="25" target="_blank" rel="noopener noreferrer">R$ 25,00</a>
+                        <a href="#" class="value-btn" data-value="10" target="_blank" rel="noopener noreferrer">R$ 10,00</a>
+                        <a href="#" class="value-btn" data-value="15" target="_blank" rel="noopener noreferrer">R$ 15,00</a>
+                        <a href="#" class="value-btn" data-value="20" target="_blank" rel="noopener noreferrer">R$ 20,00</a>
+                        <a href="#" class="value-btn" data-value="25" target="_blank" rel="noopener noreferrer">R$ 25,00</a>
                     </div>
 
                     <!-- Aba clicável para revelar valores maiores -->
@@ -167,10 +184,10 @@
                     <!-- Seção Oculta para Valores Maiores (R$ 50, R$ 100, R$ 150, R$ 200) -->
                     <div class="larger-values-panel" id="larger-values-panel">
                         <div class="value-selector">
-                            <a href="https://pay.kiwify.com.br/FV9NlOh" class="value-btn" data-value="50" target="_blank" rel="noopener noreferrer">R$ 50,00</a>
-                            <a href="https://pay.kiwify.com.br/5NCQXdZ" class="value-btn" data-value="100" target="_blank" rel="noopener noreferrer">R$ 100,00</a>
-                            <a href="https://pay.kiwify.com.br/B4ygOjr" class="value-btn" data-value="150" target="_blank" rel="noopener noreferrer">R$ 150,00</a>
-                            <a href="https://pay.kiwify.com.br/NAzO8tO" class="value-btn" data-value="200" target="_blank" rel="noopener noreferrer">R$ 200,00</a>
+                            <a href="#" class="value-btn" data-value="50" target="_blank" rel="noopener noreferrer">R$ 50,00</a>
+                            <a href="#" class="value-btn" data-value="100" target="_blank" rel="noopener noreferrer">R$ 100,00</a>
+                            <a href="#" class="value-btn" data-value="150" target="_blank" rel="noopener noreferrer">R$ 150,00</a>
+                            <a href="#" class="value-btn" data-value="200" target="_blank" rel="noopener noreferrer">R$ 200,00</a>
                         </div>
                     </div>
 
